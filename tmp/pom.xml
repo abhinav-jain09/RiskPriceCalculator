@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.bold.mambu</groupId>
+	<artifactId>bold-mambu-api</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<ciManagement>
+		<system>Gitlab</system>
+		<url>https://boldheroes.githost.io/bold/bold-risk-pricing-api/pipelines</url>
+	</ciManagement>
+
+	<issueManagement>
+		<system>Jira</system>
+		<url>https://boldheroes.atlassian.net</url>
+	</issueManagement>
+
+	<developers>
+		<developer>
+			<id>abhinav</id>
+			<email>abhinav@boldhero.es</email>
+			<name>Abhinav Jain</name>
+		</developer>
+		<developer>
+			<id>marcel</id>
+			<email>marcel@boldhero.es</email>
+			<name>Marcel de Koster</name>
+		</developer>
+		<developer>
+			<id>denis</id>
+			<email>denis@boldhero.es</email>
+			<name>Denis Tunovic</name>
+		</developer>
+	</developers>
+
+	<inceptionYear>2016</inceptionYear>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.mambu</groupId>
+			<artifactId>mambuapis</artifactId>
+			<version>4.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mambu</groupId>
+			<artifactId>mambumodels</artifactId>
+			<version>4.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>18.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.jdo</groupId>
+			<artifactId>jdo-api</artifactId>
+			<version>3.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.datanucleus</groupId>
+		    <artifactId>datanucleus-core</artifactId>
+		    <version>4.1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>2.7.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.validation</groupId>
+					<artifactId>validation-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-juli</artifactId>
+			<version>8.5.6</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- Linter -->
+			<plugin>
+				<groupId>com.lewisd</groupId>
+				<artifactId>lint-maven-plugin</artifactId>
+				<version>0.0.8</version>
+				<executions>
+					<execution>
+						<id>pom-lint</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

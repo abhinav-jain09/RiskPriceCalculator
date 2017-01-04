@@ -1,0 +1,119 @@
+# Edit via http://editor.swagger.io/
+swagger: '2.0'
+info:
+  version: 0.0.2
+  title: Risk and Pricing Engine - Quote API
+  description: This is Quote API specification.
+  termsOfService: TBD
+  contact:
+    name: Risk engine development team.
+    url: TBD
+    email: team.bold@deptagency.com
+  license:
+    name: TBD
+    url: TBD
+host: rapi.boldhero.es
+consumes:
+  - application/json
+produces:
+  - application/json
+schemes:
+  - https
+paths:
+  /asset_types:
+    get:
+      description: Get different Asset types.
+      responses:
+        200:
+          description: Successfull. Returns Asset types offer.
+          schema:
+            title: assetTypes
+            type: array
+            items:
+              $ref: '#/definitions/assetType'
+        default:
+          description: server error.
+          schema:
+            $ref: '#/definitions/serverError'
+  /quote:
+    post:
+      description: User will send these parameters to get the Quote.
+      parameters:
+        - name: amount
+          in: formData
+          description: Required amount for the loan
+          required: true
+          type: number
+          format: int32
+          maximum: 1000000
+          minimum: 50000
+          allowEmptyValue: false
+        - name: assetType
+          in: formData
+          description: The assetType to borrow the loan
+          required: true
+          type: integer
+          format: int32
+          maximum: 3
+          minimum: 1
+          allowEmptyValue: false
+        - name: assetValue
+          in: formData
+          description: Value of asset for which use want to borrow the loan
+          required: true
+          type: integer
+          format: int32
+          minimum: 50000
+          allowEmptyValue: false
+      responses:
+        200:
+          description: Successfull. Returns Quote offer.
+          schema:
+            title: loanDetails
+            type: object
+            properties:
+              status:
+                type: boolean
+              reasonCode:
+                type: integer
+                format: int32
+              indicativeAmount:
+                type: integer
+              loanOptions:
+                type: array
+                items:
+                  $ref: '#/definitions/loanTypes'
+        default:
+          description: server error.
+          schema:
+            $ref: '#/definitions/serverError'
+definitions:
+  assetType:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      minAmount:
+        type: integer
+      maxAmount:
+        type: integer
+      typicalDuration:
+        type: integer # Months loans for this assetType are typically
+  loanTypes:
+    type: object
+    properties:
+      rating:
+        type: string
+      indicativeInstallment: # The monthly payment including interest
+        type: number
+      interestRate:
+        type: number
+  serverError:
+    type: object
+    properties:
+      errorCode:
+        type: number
+      errorDiscription:
+        type: string

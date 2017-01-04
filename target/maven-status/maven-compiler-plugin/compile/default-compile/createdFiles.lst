@@ -1,0 +1,16 @@
+com\bold\risk\api\model\IndicativeLoan$IndicativeLoanBuilder.class
+com\bold\risk\api\config\SwaggerConfig.class
+com\bold\risk\api\common\RestErrorHandler.class
+com\bold\risk\api\model\IndicativeLoan.class
+com\bold\risk\api\calculator\CalculatorController.class
+com\bold\risk\api\properties\MambuConfigurationProperties.class
+com\bold\risk\api\services\FetchAssetTypesService.class
+com\bold\risk\api\messages\IndicativeLoanRequest$IndicativeLoanRequestBuilder.class
+com\bold\risk\api\Application.class
+com\bold\risk\api\messages\IndicativeLoanRequest.class
+com\bold\risk\api\model\LoanOption$LoanOptionBuilder.class
+com\bold\risk\api\services\IndicativeLoanDetailsService.class
+com\bold\risk\api\model\LoanOption.class
+com\bold\risk\api\config\MambuConfig.class
+com\bold\risk\api\model\ErrorMessage.class
+com\bold\risk\api\model\ErrorMessage$ErrorMessageBuilder.class

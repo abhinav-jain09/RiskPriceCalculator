@@ -1,0 +1,16 @@
+B:\Development\new-git-clone\src\main\java\com\bold\risk\api\calculator\CalculatorController.java
+B:\Development\new-git-clone\src\main\java\com\bold\risk\api\loadproduct\LoanProductController.java
+B:\Development\new-git-clone\src\main\java\com\bold\risk\api\services\MambuServiceConfig.java
+B:\Development\new-git-clone\src\main\java\com\bold\risk\api\Application.java
+B:\Development\new-git-clone\src\main\java\com\bold\risk\api\messages\IndicativeLoanRequest.java
+B:\Development\new-git-clone\src\main\java\com\bold\risk\api\model\ErrorMessage.java
+B:\Development\new-git-clone\src\main\java\com\bold\risk\api\config\SwaggerConfig.java
+B:\Development\new-git-clone\src\main\java\com\bold\risk\api\services\FetchAssetTypesService.java
+B:\Development\new-git-clone\src\main\java\com\bold\risk\api\model\LoanProduct.java
+B:\Development\new-git-clone\src\main\java\com\bold\risk\api\properties\MambuConfigurationProperties.java
+B:\Development\new-git-clone\src\main\java\com\bold\risk\api\services\IndicativeLoanDetailsService.java
+B:\Development\new-git-clone\src\main\java\com\bold\risk\api\model\LoanOption.java
+B:\Development\new-git-clone\src\main\java\com\bold\risk\api\config\MambuConfig.java
+B:\Development\new-git-clone\src\main\java\com\bold\risk\api\model\ValidationErrors.java
+B:\Development\new-git-clone\src\main\java\com\bold\risk\api\common\RestErrorHandler.java
+B:\Development\new-git-clone\src\main\java\com\bold\risk\api\model\IndicativeLoan.java

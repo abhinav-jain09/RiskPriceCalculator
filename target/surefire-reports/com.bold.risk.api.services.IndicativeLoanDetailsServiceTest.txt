@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.bold.risk.api.services.IndicativeLoanDetailsServiceTest
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.048 sec <<< FAILURE! - in com.bold.risk.api.services.IndicativeLoanDetailsServiceTest
+calculateInterestRateTest(com.bold.risk.api.services.IndicativeLoanDetailsServiceTest)  Time elapsed: 0.003 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<0.0725> but was:<7.25>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:553)
+	at org.junit.Assert.assertEquals(Assert.java:683)
+	at com.bold.risk.api.services.IndicativeLoanDetailsServiceTest.calculateInterestRateTest(IndicativeLoanDetailsServiceTest.java:42)
+

@@ -1,0 +1,66 @@
+stages:
+  - build
+  - test
+  - package
+  - docker_build
+  - deploy_playground
+
+cache:
+  key: "$CI_BUILD_REF_NAME"
+  paths:
+    - target/
+    # maven repo is set via variables.
+  untracked: true
+image: maven:3-jdk-8
+
+before_script:
+  - rm -rf *.jar* # required else it will still see older downloads and use a sequence number in jar download...
+  - if [ ! -f /cache/maven.repository/com/bold/mambu/bold-mambu-api/1.0-SNAPSHOT/bold-mambu-api-1.0-SNAPSHOT.pom ]; then mvn install:install-file -Dfile=tmp/pom.xml -DpomFile=tmp/pom.xml -DgroupId=com.bold.mambu -DartifactId=bold-mambu-api -Dversion=1.0-SNAPSHOT -Dpackaging=pom; fi
+  - if [ ! -f /cache/maven.repository/com/mambu/mambumodels/4.3/mambumodels-4.3.jar ]; then wget https://raw.githubusercontent.com/mambu-gmbh/Mambu-APIs-Java/master/lib/mambu-models-V4.3.jar; fi
+  - if [ ! -f /cache/maven.repository/com/mambu/mambumodels/4.3/mambumodels-4.3.jar ]; then mvn install:install-file -Dfile=mambu-models-V4.3.jar -DgroupId=com.mambu -DartifactId=mambumodels -Dversion=4.3 -Dpackaging=jar; fi
+  - if [ ! -f /cache/maven.repository/com/mambu/mambuapis/4.3/mambuapis-4.3.jar ]; then wget https://raw.githubusercontent.com/mambu-gmbh/Mambu-APIs-Java/master/build/Mambu-APIs-Java-4.3-bin.jar; fi
+  - if [ ! -f /cache/maven.repository/com/mambu/mambuapis/4.3/mambuapis-4.3.jar ]; then mvn install:install-file -Dfile=Mambu-APIs-Java-4.3-bin.jar -DgroupId=com.mambu -DartifactId=mambuapis -Dversion=4.3 -Dpackaging=jar; fi
+
+variables:
+  MAVEN_OPTS: -Dmaven.repo.local=/cache/maven.repository
+
+# Build the jar
+build:
+  stage: build
+  script:
+    - mvn clean compile
+
+test:
+  stage: test
+  script:
+    - mvn test
+
+package:
+  stage: package
+  script:
+    - mvn package
+
+# Build the Docker image and push it to ECR
+docker_build:
+  image: dawizz/docker-aws:latest
+  environment: playground
+  only:
+    - master
+  #image: docker:1.11
+  variables:
+    DOCKER_DRIVER: overlay
+  before_script:
+    - docker info
+    - $(aws ecr get-login --region eu-west-1)
+  stage: docker_build
+  script:
+    - echo "Building ${CI_PROJECT_NAME}-${CI_BUILD_REF:0:8}"
+    - docker build -t 068713275162.dkr.ecr.eu-west-1.amazonaws.com/boldheroes-playground/${CI_PROJECT_NAME}:${CI_BUILD_REF:0:8} .
+    - echo "Pushing ${CI_PROJECT_NAME}-${CI_BUILD_REF:0:8}"
+    - docker push 068713275162.dkr.ecr.eu-west-1.amazonaws.com/boldheroes-playground/${CI_PROJECT_NAME}:${CI_BUILD_REF:0:8}
+
+# deploy_playground:
+#   image: dawizz/docker-aws:latest
+#   script: make deploy
+#   environment:
+#     name: Playground
